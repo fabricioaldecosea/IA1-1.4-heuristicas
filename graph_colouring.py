@@ -1,6 +1,28 @@
 from random import sample, choice
 from itertools import combinations
 
+"""
+Problema Planteado 2.4:
+	
+		Coloreo de grafos
+		
+			(Dado un grafo no dirigido G con un conjunto de nodos N)
+			(Dado un conjunto de colores C)
+			(Asignar colores a nodos, ta que no haya nodos adyacentes del mismo color)
+			
+		Definir como problema de busqueda
+
+Pintar los nodos de un grafo, tal que los adyacentes no tengan el mismo
+Heuristicas a programar:
+	
+		1) Cantidad de aristas entre dos nodos sin color
+		2) Cantidad de aristas con uno o dos nodos sin color
+		3) Cantidad de aristas entre dos nodos con color
+		4) Diferencia entre la cantidad de nodos con el color mas usado y la cantidad con el color menos usado
+		
+chequear el sucesor a partir del choice - hacer choice de a nodo (de todo el resto de la lista) no seguir un orden, pero asegurarnos que agarramos todos
+"""
+
 GRAPH_01 = [(0,1), (0,2), (1,2), (1,6), (2,4), (2,6), (3,5), (5,6)]
 
 def randomGraphEdges(nodeCount=10, edgeCount=30):
