@@ -6,9 +6,7 @@ Problema Planteado 2.4:
 	
 		Coloreo de grafos
 		
-			(Dado un grafo no dirigido G con un conjunto de nodos N)
-			(Dado un conjunto de colores C)
-			(Asignar colores a nodos, ta que no haya nodos adyacentes del mismo color)
+			
 			
 		Definir como problema de busqueda
 
@@ -82,7 +80,7 @@ def randomSearch(edges, colours='RGB', tries=1000):
             break
 
 
-def h1(colouring):
+def h1(colouring): """ 1) Cantidad de aristas entre dos nodos sin color """
     """Documentation.
     """
     edges = 0
@@ -92,7 +90,7 @@ def h1(colouring):
     return edges
 
 
-def h2(colouring):
+def h2(colouring): """ 2) Cantidad de aristas con uno o dos nodos sin color """
     """Documentation.
     """
     edges = 0
@@ -102,7 +100,7 @@ def h2(colouring):
     return edges
 
 
-def h3(colouring):
+def h3(colouring): """ 3) Cantidad de aristas entre dos nodos con color """
     """Documentation.
     """
     edges = 0
@@ -112,7 +110,7 @@ def h3(colouring):
     return edges
 
 
-def h4(colouring):
+def h4(colouring): """ 4) Diferencia entre la cantidad de nodos con el color mas usado y la cantidad con el color menos usado """
     """Documentation.
     """
     nodes_colour = [0, 0, 0]
@@ -125,7 +123,11 @@ def h4(colouring):
             nodes_colour[2] += 1
     print(nodes_colour)
 
-
+"""
+	(Dado un grafo no dirigido G con un conjunto de nodos N)
+	(Dado un conjunto de colores C)
+	(Asignar colores a nodos, ta que no haya nodos adyacentes del mismo color)
+"""
 if __name__ == '__main__':
     nodes = nodes()
 
