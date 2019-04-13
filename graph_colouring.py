@@ -149,30 +149,14 @@ def colisiones(nodes):
 # (Asignar colores a nodos, tal que no haya nodos adyacentes del mismo color)
 if __name__ == '__main__':
     nodes = nodes()
-    # nodes = {0: 'G', 1: '', 2: '', 3: '', 4: '',  5: '', 6: ''}  # Descomentar para prueba
 
     soluciones = sucesor(nodes)
-    print(soluciones)
 
     if (len(soluciones) == 0):
         print('no es solución')
-
-    if (colisiones(nodes)):
-        print('hay colisiones')
     else:
-        print('no hay colisiones')
-
-    # for i in range(len(nodes)):
-    #     if (colisiones(nodes))
-    # if (colourCollisions())
-
-    # print("Graph colouring with random search with graph %s" % GRAPH_01)
-    # step = 1
-    # for (colouring, collisions) in randomSearch(GRAPH_01):
-    #     print("\t%d: %s\t%d collisions found." %
-    #           (step, colouring, len(collisions)))
-    #     step = step + 1
-    # if collisions:
-    #     print("No solution found!")
-    # else:
-    #     print("Solution: %s" % colouring)
+        for solucion_i in soluciones:
+            if (colisiones(solucion_i)):
+                print('hay colisiones')
+            else:
+                soluciones_r = sucesor(solucion_i)
