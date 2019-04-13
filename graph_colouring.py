@@ -3,25 +3,26 @@ from itertools import combinations
 
 """
 Problema Planteado 2.4:
-	
+
 		Coloreo de grafos
-		
-			
-			
+
+
+
 		Definir como problema de busqueda
 
 Pintar los nodos de un grafo, tal que los adyacentes no tengan el mismo
 Heuristicas a programar:
-	
+
 		1) Cantidad de aristas entre dos nodos sin color
 		2) Cantidad de aristas con uno o dos nodos sin color
 		3) Cantidad de aristas entre dos nodos con color
 		4) Diferencia entre la cantidad de nodos con el color mas usado y la cantidad con el color menos usado
-		
+
 chequear el sucesor a partir del choice - hacer choice de a nodo (de todo el resto de la lista) no seguir un orden, pero asegurarnos que agarramos todos
 """
 
-GRAPH_01 = [(0,1), (0,2), (1,2), (1,6), (2,4), (2,6), (3,5), (5,6)]
+GRAPH_01 = [(0, 1), (0, 2), (1, 2), (1, 6), (2, 4), (2, 6), (3, 5), (5, 6)]
+
 
 def randomGraphEdges(nodeCount=10, edgeCount=30):
     """Returns a list of `edgeCount` edges selected at random ,for a graph of
@@ -37,7 +38,7 @@ def nodes():
         nodes[x] = ""
         nodes[y] = ""
     # return nodes
-    return {0: 'R', 1: '', 2: 'B', 6: '', 4: 'G', 3: '', 5: ''}
+    return {0: 'R', 1: 'B', 2: 'B', 6: '', 4: 'G', 3: 'B', 5: 'G'}
 
 
 def randomColouring(nodes, colours='RGB'):
@@ -80,8 +81,8 @@ def randomSearch(edges, colours='RGB', tries=1000):
             break
 
 
-def h1(colouring): """ 1) Cantidad de aristas entre dos nodos sin color """
-    """Documentation.
+def h1(colouring):
+    """ 1) Cantidad de aristas entre dos nodos sin color
     """
     edges = 0
     for (x, y) in GRAPH_01:
@@ -90,8 +91,8 @@ def h1(colouring): """ 1) Cantidad de aristas entre dos nodos sin color """
     return edges
 
 
-def h2(colouring): """ 2) Cantidad de aristas con uno o dos nodos sin color """
-    """Documentation.
+def h2(colouring):
+    """ 2) Cantidad de aristas con uno o dos nodos sin color
     """
     edges = 0
     for (x, y) in GRAPH_01:
@@ -100,8 +101,8 @@ def h2(colouring): """ 2) Cantidad de aristas con uno o dos nodos sin color """
     return edges
 
 
-def h3(colouring): """ 3) Cantidad de aristas entre dos nodos con color """
-    """Documentation.
+def h3(colouring):
+    """ 3) Cantidad de aristas entre dos nodos con color
     """
     edges = 0
     for (x, y) in GRAPH_01:
@@ -110,24 +111,25 @@ def h3(colouring): """ 3) Cantidad de aristas entre dos nodos con color """
     return edges
 
 
-def h4(colouring): """ 4) Diferencia entre la cantidad de nodos con el color mas usado y la cantidad con el color menos usado """
-    """Documentation.
+def h4(colouring):
+    """ 4) Diferencia entre la cantidad de nodos con el color mas usado y la cantidad con el color menos usado
     """
-    nodes_colour = [0, 0, 0]
-    for (x, y) in colouring:
-        if colouring[y] == 'R':
-            nodes_colour[0] += 1
-        if colouring[y] == 'G':
-            nodes_colour[1] += 1
-        if colouring[y] == 'B':
-            nodes_colour[2] += 1
-    print(nodes_colour)
+    nodes_colour = {'R': 0, 'G': 0, 'B': 0}
+    for k, v in colouring.items():
+        if (v != ''):
+            nodes_colour[v] += 1
 
-"""
-	(Dado un grafo no dirigido G con un conjunto de nodos N)
-	(Dado un conjunto de colores C)
-	(Asignar colores a nodos, ta que no haya nodos adyacentes del mismo color)
-"""
+    temp = sorted(nodes_colour.items(), key=lambda x: x[1], reverse=True)
+    return temp[0][1] - temp[2][1]
+
+
+def sucesor():
+    return True
+
+
+# (Dado un grafo no dirigido G con un conjunto de nodos N)
+# (Dado un conjunto de colores C)
+# (Asignar colores a nodos, tal que no haya nodos adyacentes del mismo color)
 if __name__ == '__main__':
     nodes = nodes()
 
@@ -135,6 +137,7 @@ if __name__ == '__main__':
     # print(h2(nodes))
     # print(h3(nodes))
     print(h4(nodes))
+
     # for i in range(len(nodes)):
 
     # if (colourCollisions())
