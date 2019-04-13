@@ -125,14 +125,14 @@ def h4(colouring):
 def sucesor(nodes):
     soluciones = []
     for x, y in nodes.items():
-        temp = nodes.copy()
+        temp1 = nodes.copy()
+        temp2 = nodes.copy()
+        temp3 = nodes.copy()
         if y == '':
-            temp[x] = 'R'
-            soluciones.append(temp)
-            temp[x] = 'G'
-            soluciones.append(temp)
-            temp[x] = 'B'
-            soluciones.append(temp)
+            temp1[x] = 'R'
+            temp2[x] = 'G'
+            temp3[x] = 'B'
+            soluciones.extend([temp1, temp2, temp3])
     return soluciones
 
 
@@ -149,10 +149,10 @@ def colisiones(nodes):
 # (Asignar colores a nodos, tal que no haya nodos adyacentes del mismo color)
 if __name__ == '__main__':
     nodes = nodes()
-    nodes = {0: 'G', 1: '', 2: '', 3: '', 4: '',
-             5: '', 6: ''}  # Descomentar para prueba
+    # nodes = {0: 'G', 1: '', 2: '', 3: '', 4: '',  5: '', 6: ''}  # Descomentar para prueba
 
     soluciones = sucesor(nodes)
+    print(soluciones)
 
     if (len(soluciones) == 0):
         print('no es solución')
