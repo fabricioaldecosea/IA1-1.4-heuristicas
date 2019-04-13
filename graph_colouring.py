@@ -123,7 +123,6 @@ def h4(colouring):
 
 
 def sucesor(nodes):
-    print(nodes)
     soluciones = []
     for x, y in nodes.items():
         temp = nodes.copy()
@@ -134,7 +133,7 @@ def sucesor(nodes):
             soluciones.append(temp)
             temp[x] = 'B'
             soluciones.append(temp)
-    return False
+    return soluciones
 
 
 def colisiones(nodes):
@@ -155,7 +154,7 @@ if __name__ == '__main__':
 
     soluciones = sucesor(nodes)
 
-    if (soluciones == False):
+    if (len(soluciones) == 0):
         print('no es solución')
 
     if (colisiones(nodes)):
