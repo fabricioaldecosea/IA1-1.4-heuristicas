@@ -37,8 +37,7 @@ def nodes():
     for (x, y) in GRAPH_01:
         nodes[x] = ""
         nodes[y] = ""
-    # return nodes
-    return {0: 'R', 1: 'B', 2: 'B', 6: '', 4: 'G', 3: 'B', 5: 'G'}
+    return nodes
 
 
 def randomColouring(nodes, colours='RGB'):
@@ -127,19 +126,28 @@ def sucesor():
     return True
 
 
+def colisiones(nodes):
+    for x, y in nodes.items():
+        for (a, b) in GRAPH_01:
+            if (x == a and nodes[b] != '' and nodes[b] == y):
+                return True
+    return False
+
+
 # (Dado un grafo no dirigido G con un conjunto de nodos N)
 # (Dado un conjunto de colores C)
 # (Asignar colores a nodos, tal que no haya nodos adyacentes del mismo color)
 if __name__ == '__main__':
     nodes = nodes()
+    # nodes = {0: 'G', 1: 'R', 2: '', 3: 'G', 4: '', 5: '', 6: 'G'} # Descomentar para prueba
 
-    # print(h1(nodes))
-    # print(h2(nodes))
-    # print(h3(nodes))
-    print(h4(nodes))
+    if (colisiones(nodes)):
+        print('hay colisiones')
+    else:
+        print('no hay colisiones')
 
     # for i in range(len(nodes)):
-
+    #     if (colisiones(nodes))
     # if (colourCollisions())
 
     # print("Graph colouring with random search with graph %s" % GRAPH_01)
